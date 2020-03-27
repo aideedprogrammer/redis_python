@@ -4,40 +4,48 @@ Project for basic redis PUB/Sub in Flask Project Python.
 
 ### Required ###
 1. Install ubuntu 18.04 LTS in Microsoft Store. 
-2. Install redis in ubuntu. Follow that click this [link](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-18-04)
+2. Install redis in ubuntu. [Follow this link](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-18-04)
+3. Install create all required in virtual env.
+  - pip install flask
+  - pip install redis
+  - pip install request
+  
+  Active your virtual enviroment and run (in directory file).
+  - python init.py
 
 You can use the [editor on GitHub](https://github.com/aideedprogrammer/redis_python/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+### Subscribe(Sub) Redis using SSE
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Here simple explaination about SSE. Server-sent events open a single long-lived HTTP connection. The server then unidirectionally sends data when it has it, there is no need for the client to request it or do anything but wait for messages.
+
+I using SSE for check any subscription of event. 
 
 ```markdown
-Syntax highlighted code block
+@app.route("/stream")
+def stream():
+    return Response(event_stream(), mimetype="text/event-stream")
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+def event_stream():
+    pubsub = r.pubsub(ignore_subscribe_messages=True)
+    pubsub.subscribe('notification')                ###//subscription of notification event name
+    for message in pubsub.listen():
+        yield 'data: %s\n\n' % message['data']
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### Publish(Pub) Redis using HTTP
 
-### Jekyll Themes
+```markdown
+@app.route('/post', methods=['POST'])
+def post():
+    message = request.form['message']
+    r.publish('notification', message)    ###set name of event as sample is notification.
+    return Response(status=204)
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/aideedprogrammer/redis_python/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+### More about redis
 
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Click this [link](https://redis.io/topics/pubsub)
