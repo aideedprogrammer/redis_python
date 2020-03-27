@@ -3,7 +3,7 @@
 Project for basic redis PUB/Sub in Flask Project Python.
 
 ### Required ###
-1. Install ubuntu 18.04 LTS in Microsoft Store. 
+1. Install Windows SubSystem for Linux (WSL) ubuntu 18.04 LTS in Microsoft Store. 
 2. Install redis in ubuntu. [Follow this link](https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-18-04)
 3. Install create all required in virtual env.
   - pip install flask
