@@ -13,10 +13,6 @@ Project for basic redis PUB/Sub in Flask Project Python.
   Active your virtual enviroment and run (in directory file).
   - python init.py
 
-You can use the [editor on GitHub](https://github.com/aideedprogrammer/redis_python/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
 ### Subscribe(Sub) Redis using SSE
 
 Here simple explaination about SSE. Server-sent events open a single long-lived HTTP connection. The server then unidirectionally sends data when it has it, there is no need for the client to request it or do anything but wait for messages.
