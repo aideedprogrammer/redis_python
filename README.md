@@ -1,4 +1,10 @@
-## Welcome to GitHub Pages
+## Pub / Sub Redis in Python
+
+Project for basic redis PUB/Sub in Flask Project Python.
+
+### Required ###
+1. Install ubuntu 18.04 LTS in Microsoft Store. 
+2. Install redis in ubuntu. Follow that click this (link)[https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-18-04]
 
 You can use the [editor on GitHub](https://github.com/aideedprogrammer/redis_python/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
